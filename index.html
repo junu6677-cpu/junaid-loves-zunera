@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Zunera 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    background:black;
+    font-family:'Poppins',sans-serif;
+    color:white;
+    overflow:hidden;
+    text-align:center;
+}
+
+/* INTRO */
+#intro{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transition:opacity 2s ease;
+    z-index:10;
+}
+
+#bismillah{
+    font-family:'Great Vibes',cursive;
+    font-size:60px;
+    opacity:0;
+    animation:fadeIn 3s forwards;
+}
+
+#introText{
+    margin-top:20px;
+    font-size:22px;
+    opacity:0;
+    animation:fadeIn 3s forwards;
+    animation-delay:3s;
+}
+
+@keyframes fadeIn{
+    to{opacity:1;}
+}
+
+/* MAIN */
+#main{
+    display:none;
+    background:linear-gradient(to bottom,#0d1b2a,#1b263b,#415a77);
+    min-height:100vh;
+    overflow:hidden;
+}
+
+/* MOON */
+.moon{
+    position:fixed;
+    top:60px;
+    right:80px;
+    width:0;
+    height:0;
+    background:radial-gradient(circle,#fff,#ddd,transparent);
+    border-radius:50%;
+    box-shadow:0 0 80px white;
+    transition:all 3s ease;
+}
+
+.moon-show{
+    width:120px;
+    height:120px;
+}
+
+/* STARS */
+.star{
+    position:fixed;
+    width:2px;
+    height:2px;
+    background:white;
+    animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+    from{opacity:0.3;}
+    to{opacity:1;}
+}
+
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:55px;
+    margin-top:150px;
+}
+
+/* ENVELOPE */
+.envelope{
+    width:340px;
+    height:210px;
+    background:#c9ada7;
+    margin:40px auto;
+    position:relative;
+    border-radius:6px;
+}
+
+.flap{
+    position:absolute;
+    width:0;
+    height:0;
+    border-left:170px solid transparent;
+    border-right:170px solid transparent;
+    border-bottom:110px solid #9a8c98;
+    top:-110px;
+    left:0;
+    transform-origin:top;
+    transition:transform 1.5s ease;
+}
+
+.letter{
+    width:300px;
+    height:180px;
+    background:white;
+    color:black;
+    position:absolute;
+    top:15px;
+    left:20px;
+    padding:15px;
+    box-sizing:border-box;
+    transform:translateY(100%);
+    transition:transform 1.5s ease;
+    font-size:18px;
+    font-family:'Great Vibes',cursive;
+    opacity:0;
+}
+
+.open .flap{
+    transform:rotateX(180deg);
+}
+
+.open .letter{
+    transform:translateY(-75%);
+    opacity:1;
+}
+
+/* RING */
+.ring{
+    font-size:60px;
+    margin-top:20px;
+    animation:rotateRing 3s linear infinite;
+}
+
+@keyframes rotateRing{
+    from{transform:rotateY(0deg);}
+    to{transform:rotateY(360deg);}
+}
+
+/* SPARKLES */
+.sparkle{
+    position:fixed;
+    color:gold;
+    font-size:20px;
+    animation:spark 1s ease-out forwards;
+}
+
+@keyframes spark{
+    to{transform:scale(2);opacity:0;}
+}
+
+button{
+    padding:12px 25px;
+    margin:20px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.yesBtn{background:#ff4d6d;color:white;}
+.noBtn{background:gray;color:white;}
+
+</style>
+</head>
+
+<body>
+
+<div id="intro" onclick="startExperience()">
+    <div id="bismillah">Bismillah 🤍</div>
+    <div id="introText">Every dua led me to you…</div>
+    <p style="margin-top:40px;opacity:0.6;">Tap to begin</p>
+</div>
+
+<div id="main">
+
+<div class="moon" id="moon"></div>
+
+<h1>My Dearest Zunera 🤍</h1>
+
+<div id="ringContainer"></div>
+
+<div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="letter" id="letter"></div>
+</div>
+
+<button class="yesBtn" onclick="qubool()">Qubool Hai 🤍</button>
+<button class="noBtn" onclick="alert('My heart already knows your answer 🤍')">Think Again</button>
+
+</div>
+
+<audio id="nasheed" src="nasheed.mp3" loop></audio>
+<audio id="tasbeeh" src="tasbeeh.mp3"></audio>
+
+<script>
+
+/* START EXPERIENCE */
+function startExperience(){
+    document.getElementById("nasheed").play();
+    document.getElementById("intro").style.opacity="0";
+    document.getElementById("moon").classList.add("moon-show");
+
+    setTimeout(()=>{
+        document.getElementById("intro").style.display="none";
+        document.getElementById("main").style.display="block";
+        createStars();
+    },3000);
+}
+
+/* STARS */
+function createStars(){
+    for(let i=0;i<120;i++){
+        let star=document.createElement("div");
+        star.className="star";
+        star.style.top=Math.random()*100+"vh";
+        star.style.left=Math.random()*100+"vw";
+        document.body.appendChild(star);
+    }
+}
+
+/* LETTER TEXT */
+const message=`you are light in my darkness
+you been best for me
+i love zunera now and always
+you are the best
+with love your loving husband junaid`;
+
+let index=0;
+
+function typeLetter(){
+    if(index < message.length){
+        document.getElementById("letter").innerHTML += message.charAt(index);
+        index++;
+        setTimeout(typeLetter,60);
+    }
+}
+
+/* QUBOOL */
+function qubool(){
+
+    document.getElementById("tasbeeh").play();
+
+    // Show ring
+    let ring=document.createElement("div");
+    ring.className="ring";
+    ring.innerHTML="💍";
+    document.getElementById("ringContainer").appendChild(ring);
+
+    // Sparkles
+    for(let i=0;i<15;i++){
+        let spark=document.createElement("div");
+        spark.className="sparkle";
+        spark.innerHTML="✨";
+        spark.style.top=Math.random()*100+"vh";
+        spark.style.left=Math.random()*100+"vw";
+        document.body.appendChild(spark);
+        setTimeout(()=>spark.remove(),1000);
+    }
+
+    // Open envelope after delay
+    setTimeout(()=>{
+        document.getElementById("envelope").classList.add("open");
+        typeLetter();
+    },2000);
+}
+
+</script>
+
+</body>
+</html>
